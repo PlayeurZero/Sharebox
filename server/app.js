@@ -10,8 +10,7 @@ let sharebox_options = {
 	http_server : {
 		port : 80,
 		folders : {
-			client : 'client',
-			download : 'server/downloads'
+			client : 'client'
 		},
 		compression : {
 			enabled : true,

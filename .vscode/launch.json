@@ -8,7 +8,7 @@
 			"program": "${workspaceRoot}/server/app.js",
 			"stopOnEntry": false,
 			"args": [],
-			"cwd": "${workspaceRoot}/server",
+			"cwd": "${workspaceRoot}",
 			"preLaunchTask": null,
 			"runtimeExecutable": null,
 			"runtimeArgs": [

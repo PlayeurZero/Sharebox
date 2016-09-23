@@ -1,20 +1,9 @@
 {
 	"username" : "PlayeurZero",
 	"password" : "vtSH+R07jGs3/AUVEFPvWo6STVgGzv+Q3G0WPCU2GFg=",
-	"avatar" : 0,
+	"avatar" : "0",
 	"access": {
 		"groups" : ["PIBox Team"],
 		"permissions" : ["send_message", "receive_message", "upload_file", "download_file", "kick", "ban", "move_user_channel"]
 	}
 }
-
-// require('crypto').createHash("sha256").update("test").update("playeurzero").digest("base64");
-
-/*
-
-send_message
-receive_message
-upload_file
-download_file
-
-*/
