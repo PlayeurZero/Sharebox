@@ -13,8 +13,7 @@ let sharebox_options = {
 			client : 'client'
 		},
 		compression : {
-			enabled : true,
-			methods : ['deflate', 'gzip']
+			enabled : true
 		}
 	}
 };
