@@ -1,0 +1,17 @@
+{
+  "username": "tr4shxsnow",
+  "password": "V20Ug/Dbro7VxQeDNMFb8XV6TK7erkFdCv80BmKLf/Y=",
+  "avatar": "0",
+  "access": {
+    "groups": [
+      "default"
+    ],
+    "permissions": [
+      "send_message",
+      "receive_message",
+      "upload_file",
+      "download_file"
+    ]
+  },
+  "banned": false
+}
