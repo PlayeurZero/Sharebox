@@ -3,7 +3,7 @@
 	"password" : "vtSH+R07jGs3/AUVEFPvWo6STVgGzv+Q3G0WPCU2GFg=",
 	"avatar" : "0",
 	"access": {
-		"groups" : ["PIBox Team"],
+		"groups" : ["pibox team"],
 		"permissions" : ["send_message", "receive_message", "upload_file", "download_file", "kick", "ban", "move_user_channel"]
 	},
 	"banned" : false
