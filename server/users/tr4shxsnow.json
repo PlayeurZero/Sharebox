@@ -3,12 +3,9 @@
   "password": "V20Ug/Dbro7VxQeDNMFb8XV6TK7erkFdCv80BmKLf/Y=",
   "avatar": "0",
   "access": {
-    "groups": [
-      "default"
-    ],
+    "group": "default",
     "permissions": [
       "send_message",
-      "receive_message",
       "upload_file",
       "download_file"
     ]
