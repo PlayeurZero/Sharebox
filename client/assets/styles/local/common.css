@@ -14,3 +14,121 @@ body {
 main {
 	flex: 1 0 auto;
 }
+
+.loader {
+	position: relative;
+
+    overflow: hidden;
+
+    display: block;
+
+    height: 4px;
+    width: 100%;
+
+    margin: 0.5rem 0 1rem 0;
+
+    border-radius: 2px;
+}
+
+.loader .buffer {
+	position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+	z-index: 5;
+
+    background-color: #acece6;
+
+    transition: width .3s linear;
+}
+
+.loader .determinate {
+	position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+	z-index: 6;
+
+    background-color: #26a69a;
+
+    transition: width .3s linear;
+}
+
+.loader .dashed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 4;
+
+	width: 100%;
+
+	background-color: transparent;
+}
+
+.loader .dashed::before {
+	content: "";
+	
+    position: absolute;
+
+    margin-top: 0;
+    height: 5px;
+    width: 100%;
+    background: radial-gradient(#A5E6DD 0%, #A5E6DD 16%, transparent 42%);
+    background-size: 10px 10px !important;
+    background-position: 0px -23px;
+	animation: 3s buffer infinite linear;
+}
+
+@-moz-keyframes buffer {
+  0% {
+    opacity: 1;
+    background-position: 0px -23px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    background-position: -200px -23px;
+  }
+}
+@-webkit-keyframes buffer {
+  0% {
+    opacity: 1;
+    background-position: 0px -23px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    background-position: -200px -23px;
+  }
+}
+@-o-keyframes buffer {
+  0% {
+    opacity: 1;
+    background-position: 0px -23px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    background-position: -200px -23px;
+  }
+}
+@keyframes buffer {
+  0% {
+    opacity: 1;
+    background-position: 0px -23px;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    background-position: -200px -23px;
+  }
+}
