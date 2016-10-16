@@ -1,0 +1,188 @@
+main > .target {
+	display: none;
+}
+
+main > .target:target {
+	display: block;
+}
+
+.messages {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+
+	overflow-y: scroll;
+
+	width: 50%;
+}
+
+.messages-container {
+	padding: 30px 15px;
+}
+
+.message {
+	padding: 15px;
+
+	background-color: #fff;
+	border-radius: 2px;
+}
+
+.message:not(:last-child) {
+	margin-bottom: 15px;
+}
+
+	.message-user-info {
+		padding: 0 0 10px 0;
+
+		border-style: solid;
+		border-color: rgba(0, 0, 0, .2);
+		border-width: 0 0 1px 0;
+	}
+
+		.message-avatar {
+			float: left;
+
+			width: 48px;
+			height: 48px;
+
+			margin-right: 5px;
+		}
+
+		.message-username {
+			font-weight: bold;
+		}
+
+		.message-pubdate {
+			font-size: 12px;
+		}
+	
+	.message-content {
+		padding: 15px 0 0 0;
+	}
+
+.downloads {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 50%;
+
+	overflow-y: scroll;
+
+	width: 50%;
+}
+
+.downloads-container {
+	padding: 30px 15px;
+}
+
+.download {
+	padding: 15px;
+
+	background-color: #fff;
+
+	/*box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);*/
+	border-radius: 2px;
+}
+
+.download:not(:last-child) {
+	margin-bottom: 30px;
+}
+
+	.download-name {
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+
+	.download-owner {
+		display: inline-block;
+		font-size: 11px;
+		text-transform: uppercase;
+	}
+
+	.download-owner::before {
+		content: "par ";
+		text-transform: none;
+	}
+
+	.download-pubdate {
+		display: inline-block;
+		font-size: 11px;
+	}
+
+	.download-pubdate::before {
+		content: "le ";
+	}
+
+	.download-size {
+		font-size: 11px;
+	}
+
+	.download-size::before {
+		content: "taille: ";
+	}
+
+	.download-action {
+		margin-top: 5px;
+	}
+
+#chat {
+	position: absolute;
+	left: 50%;
+	bottom: 60px;
+	z-index: 20;
+
+	overflow: hidden;
+
+	max-width: 1280px;
+  	width: 90%;
+
+	  transform: translateX(-50%);
+}
+
+@media only screen and (min-width: 601px) {
+	#chat {
+		top: 56px;
+		width: 85%;
+	}
+}
+
+@media only screen and (min-width: 993px) {
+	#chat {
+		top: 64px;
+		width: 70%;
+	}
+}
+
+.chat {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	height: 60px;
+
+	border-style: solid;
+	border-color: rgba(0, 0, 0, .2);
+	border-width: 1px 0 0 0;
+}
+
+	.chat-field {
+		height: 60px;
+
+		padding: 5px;
+
+		border-style: solid;
+		border-color: rgba(0, 0, 0, .2);
+		border-width: 0 1px 0 1px;
+
+		color: #fff;
+		
+		resize: none;
+	}
+
+	.chat-submit {
+		min-height: 40px;
+
+		margin-top: 10px;
+	}

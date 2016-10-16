@@ -3,19 +3,107 @@ $(document).ready(function() {
 
 	let websocket = new WebSocket('ws://localhost:8080');
 
+	window.location.hash = 'sign';
+
+	let user = null;
+
 	websocket.addEventListener('open', function() {
 		websocket.addEventListener('message', function(e) {
-			let data = JSON.parse(e.data);
+			let parsed_data = JSON.parse(e.data);
+			
+			let action = parsed_data.action;
+
+			console.log(parsed_data)
+
+			switch(action) {
+				case "signup_failed" :
+					signup_failed(parsed_data.extra);
+					break;
+
+				case "signin_success" :
+					sign_success(parsed_data.extra);
+					break;
+
+				case "signup_success": 
+					sign_success(parsed_data.extra);
+					break;
+
+				case "message_success":
+					message_success(parsed_data.extra);
+			}
 		});
+
+		let signup_failed = function(data) {
+			$(".signin_password").removeClass("hide");
+		};
+
+		let sign_success = function(data) {
+			window.location.hash = 'chat';
+
+			user = {
+				username : data.username,
+				avatar : data.avatar
+			};
+		};
+
+		$('.chat .chat-field').on('keydown', function(e) {
+			if(!(e.keyCode == 13 && !(e.shiftKey))) {
+				return;
+			}
+
+			e.preventDefault();
+
+			message_submit.call(this);
+		});
+
+		$('.chat-submit').on('click', function(e) {
+			message_submit.call($('.chat .chat-field').get(0));
+		});
+
+		let message_submit = function(input) {
+			websocket.send(JSON.stringify({
+				action : "message",
+				extra : {
+					message : $(this).val()
+				}
+			}));
+
+			$(this).val('');
+		};
+
+		let message_success = function(data) {
+			let message_element = $('<div class="message"><div class="message-container"><div class="message-user-info"><img class="message-avatar" src="./assets/images/avatars/1.png" alt=""><div class="message-username"></div><div class="message-pubdate"></div></div><div class="message-content"></div></div></div>');
+
+			message_element.find('.message-username').text(data.username);
+			message_element.find('.message-avatar').attr('src', './assets/images/avatars/' + '1' + '.png'); // CUSTOM AVATAR
+			message_element.find('.message-pubdate').text('now');
+			message_element.find('.message-content').text(data.message);
+			
+			$('.messages-container').append(message_element);
+		};
 
 		$("#signin_form").on('submit', function(e) {
 			e.preventDefault();
 
+			let username = $("#signin_username_field").val();
+			let password = $("#signin_password_field").val();
+
+			if(password === '') {
+				websocket.send(JSON.stringify({
+					action : "signup",
+					extra : {
+						username : username
+					}
+				}));
+
+				return;
+			}
+
 			websocket.send(JSON.stringify({
 				action : "signin",
 				extra : {
-				username : $("#signin_username_field").val(),
-				password : $("#signin_password_field").val()
+					username : username,
+					password : password
 				}
 			}));
 		});
@@ -27,16 +115,8 @@ $(document).ready(function() {
 			reader.addEventListener('loadend', function() {
 				let array = new Uint8Array(reader.result);
 
-				// function upload() {
-				// 	// for(let chunk of split_array) {
-				// 	// 	websocket.send(chunk);
-				// 	// }
-				// };
-
 				let uploaded_chunks = -1;
 				let file_upload = function() {
-					// console.log(md5(split_array[uploaded_chunks]));
-					// console.log(md5(array.slice(uploaded_chunks * 16384, uploaded_chunks + 16384)));
 					websocket.send(array.slice(uploaded_chunks * 16384, uploaded_chunks * 16384 + 16384));
 				};
 
@@ -76,70 +156,5 @@ $(document).ready(function() {
 
 			reader.readAsArrayBuffer(file);
 		});
-
-		/*$('#upload_file').on('change', function(e) {
-			let file = e.target.files[0];
-			// let max_chunk_size = Math.pow(2, 10) * 16;
-
-			var reader = new FileReader();
-
-			reader.addEventListener('load', function() {
-				let array = new Uint8Array(reader.result);
-				let split_array = [];
-
-				let i = 0;
-				let tmp = array.slice(0, 16384);
-				while(tmp.length > 0) {
-					split_array.push(tmp);
-
-					tmp = array.slice(i, i + 16384);
-					i += 16384;
-				}
-
-				// xxx = new Uint8Array(reader.result);
-				// let j = 0;
-				// for(a of split_array) {
-				// 	for(b of a) {
-				// 		xxx[xxx.length] = a;
-				// 	}
-				// }
-
-				$('#upload1').on('click', function() {
-					console.log('oui');
-					websocket.send(JSON.stringify({
-						action : 'upload_init',
-						extra : {
-							size : array.byteLength
-						}
-					}));
-				});
-
-				$('#upload2').on('click', function() {
-					// websocket.send(JSON.stringify({
-					// 	action : 'upload_submit'
-					// }));
-
-					setTimeout(function() {
-						websocket.send(JSON.stringify({
-							action : 'upload_submit'
-						}));
-					}, 2000);
-
-					upload();
-				});
-
-				function upload() {
-					for(let chunk of split_array) {
-						websocket.send(chunk);
-					}
-				};
-
-				// upload();
-				
-				// websocket.send(array);
-			});
-
-			reader.readAsArrayBuffer(file);
-		});*/
 	});
 });
