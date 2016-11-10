@@ -102,7 +102,7 @@ $(document).ready(function() {
 	moment.locale('fr');
 	$(".button-collapse").sideNav();
 
-	let websocket = new WebSocket('ws://localhost:8080');
+	let websocket = new WebSocket('ws://' + window.location.host + ':8080');
 
 	window.location.hash = 'sign';
 
