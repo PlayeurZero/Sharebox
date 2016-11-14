@@ -1,11 +1,3 @@
-main > .target {
-	display: none;
-}
-
-main > .target:target {
-	display: block;
-}
-
 .messages {
 	position: absolute;
 	left: 0;
