@@ -44,26 +44,26 @@
 
 		// SIGN IN/UP
 		socket.get().addEventListener('message', function(e) {
-			let data = JSON.parse(e.data);
+			let parsed_data = JSON.parse(e.data);
 
-			switch(data.action) {
+			switch(parsed_data.action) {
 				case "signup_success":
 				case "signin_success":
 					Materialize.toast(Translate('view/connected'), 10000);
 					view.setPage({ name : "chat", url : "chat/", showChatBar : true });
 					view.update();
 
-					user = new User(data.extra);
+					user = new User(parsed_data.extra);
 
 					break;
 				
 				case "signup_failed":
-					if(data.extra.message === 'translate:user/missing_password') {
+					if(parsed_data.extra.message === 'translate:user/missing_password') {
 						$('.signin_password').removeClass('hide');
 						return;
 					}
 
-					Materialize.toast(Translate(data.extra.message), 10000);
+					Materialize.toast(Translate(parsed_data.extra.message), 10000);
 
 					break;
 			}
@@ -117,7 +117,7 @@
 		};
 
 		socket.get().addEventListener('message', function(e) {
-			let parsed_data = JSON.parse(data);
+			let parsed_data = JSON.parse(e.data);
 
 			switch(parsed_data.action) {
 				case "message_success":
@@ -160,7 +160,6 @@
 					break;
 			}
 		});
-
 
 		$('.downloads-container')
 			.on('dragover', function(e) {
@@ -246,8 +245,6 @@
 					let parsed_data = JSON.parse(e.data);
 
 					let action = parsed_data.action;
-
-					console.log(parsed_data);
 
 					switch(action) {
 						case "upload_wait_data":
