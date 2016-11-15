@@ -36,6 +36,58 @@
 	</head>
 
 	<body>
+		<style>
+			.signup-window {
+				position: fixed;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				z-index: 100;
+
+				background-color: rgba(0, 0, 0, .5);
+			}
+
+			.signup-window-container {
+				max-width: 600px;
+				
+				margin: 60px auto 0 auto;
+				padding: 15px;
+			}
+		</style>
+
+		<div class="signup-window hide">
+			<div class="signup-window-container card-panel white">
+				<div class="signup-window-content">
+					<h4>S'inscrire</h4>
+
+					<span>
+						<div class="row">
+							<form id="signup_form" class="col s12">
+								<div class="row signup_username">
+									<div class="input-field col s12">
+										<input type="text" id="signup_username_field" class="validate" spellcheck="false">
+										<label for="signup_username_field">Username</label>
+									</div>
+								</div>
+
+								<div class="row signup_password">
+									<div class="input-field col s12">
+									<input type="password" id="signup_password_field" class="validate">
+									<label for="signup_password_field">Password</label>
+									</div>
+								</div>
+
+								<button class="btn waves-effect light-blue accent-4" type="submit" id="signin_submit">Submit
+									<i class="material-icons right">send</i>
+								</button>
+							</form>
+						</div>
+					</span>
+				</div>
+			</div>
+		</div>
+
 		<nav>
 			<div class="nav-wrapper light-blue accent-4" style="padding-left: 15px; padding-right: 15px;">
 				<a href="" class="brand-logo center" style="height: 100%; padding: 5px 0">
@@ -44,11 +96,11 @@
 				</a>
 				<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="#login">S'inscrire</a></li>
+					<li><a class="signup-action" href="#signup">S'inscrire</a></li>
 				</ul>
 				
 				<ul class="side-nav" id="mobile-demo">
-					<li><a href="#login">S'inscrire</a></li>
+					<li><a class="signup-action" href="#signup">S'inscrire</a></li>
 				</ul>
 			</div>
 		</nav>

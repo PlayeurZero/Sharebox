@@ -55,6 +55,8 @@
 
 					user = new User(parsed_data.extra);
 
+					$('.signup-window').addClass('hide');
+
 					break;
 				
 				case "signup_failed":
@@ -279,6 +281,39 @@
 
 			reader.readAsArrayBuffer(file);
 		};
+
+		// SIGNUP
+		$('.signup-action').on('click', function(e) {
+			e.preventDefault();
+
+			view.setPage({ name : "signup", url : "signup/", showChatBar : false });
+			view.update();
+
+			$('.signup-window').removeClass('hide');
+		});
+
+		$('#signup_form').on('submit', function(e) {
+			e.preventDefault();
+
+			let username = $('#signup_username_field').val();
+			let password = $('#signup_password_field').val();
+
+			if(password == '') return;
+
+			socket.notify({
+				action : "signup",
+				extra : {
+					username : username,
+					password : password
+				}
+			});
+		});
+
+		$('.signup-window').on('click', function(e) {
+			if($(this).get(0) == $(e.target).get(0)) {
+				$(this).addClass('hide');
+			}
+		});
 	});
 })(jQuery);
 
