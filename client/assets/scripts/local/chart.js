@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	let websocket = new WebSocket('ws://localhost:8080');
+	let websocket = new WebSocket('ws://localhost:7098');
 
 	let max_users = 0;
 	let max_amount_data = 0;
