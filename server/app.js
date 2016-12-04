@@ -4,7 +4,7 @@ let Sharebox = require('core/sharebox');
 
 let sharebox_options = {
 	socket_server : {
-		port : 8080
+		port : 7098
 	},
 	
 	http_server : {

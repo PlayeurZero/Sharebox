@@ -5,7 +5,7 @@
 		update_moment();
 
 		let socket = Socket.getInstance();
-		socket.set(new WebSocket('ws://' + window.location.hostname + ':8080'));
+		socket.set(new WebSocket('ws://' + window.location.hostname + ':7098'));
 		
 		let user;
 
