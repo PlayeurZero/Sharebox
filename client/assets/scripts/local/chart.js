@@ -13,7 +13,6 @@ $(document).ready(function() {
 			high: 15,
 			low: 0,
 			fullWidth: true,
-			// As this is axis specific we need to tell Chartist to use whole numbers only on the concerned axis
 			axisY: {
 				onlyInteger: true,
 				offset: 20
@@ -29,7 +28,6 @@ $(document).ready(function() {
 			high: 15,
 			low: 0,
 			fullWidth: true,
-			// As this is axis specific we need to tell Chartist to use whole numbers only on the concerned axis
 			axisY: {
 				onlyInteger: true,
 				offset: 20

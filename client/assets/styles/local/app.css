@@ -62,6 +62,8 @@
 	overflow-y: scroll;
 
 	width: 50%;
+
+	cursor: copy;
 }
 
 .downloads-container {

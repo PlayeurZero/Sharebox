@@ -179,15 +179,28 @@
 				$(this).removeClass('active');
 			})
 			.on('drop', function(e) {
-			e.preventDefault();
-			e.stopPropagation();
+				e.preventDefault();
+				e.stopPropagation();
 
-			$(this).removeClass('active');
+				$(this).removeClass('active');
 
-			let file = e.originalEvent.dataTransfer.files[0];
+				let file = e.originalEvent.dataTransfer.files[0];
 
-			upload_file(file);
-		});
+				upload_file(file);
+			})
+			.on('click', function(e) {
+				if(e.target == $(this).get(0)) {
+					e.preventDefault();
+
+					$('#downloads-file').click();
+				}
+			});
+
+			$('#downloads-file').on('change', function(e) {
+				let file = e.target.files[0];
+
+				upload_file(file);
+			});
 
 		$(document).on('drop', function(e) {
 			e.preventDefault();
