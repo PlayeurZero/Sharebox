@@ -92,6 +92,21 @@
 			$('#signin').hide();
 		});
 
+		// USER join
+		socket.get().addEventListener('message', function(e) {
+			let parsed_data = JSON.parse(e.data);
+
+			switch(parsed_data.action) {
+				case "user_joined":
+					Materialize.toast(Translate(parsed_data.extra.username + " s'est connecté!"), 10000);
+					break;
+
+				case "user_left":
+					Materialize.toast(Translate(parsed_data.extra.username + " s'est déconnecté!"), 10000);
+					break;
+			}
+		});
+
 		// MESSAGE
 		$('.chat .chat-field').on('keydown', function(e) {
 			if(!(e.keyCode == 13 && !(e.shiftKey))) {
